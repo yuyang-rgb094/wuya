@@ -1,0 +1,61 @@
+# =============================================================================
+# WuYa Agents — Docker Compose
+# =============================================================================
+# Usage:
+#   docker compose up -d          # Start all services
+#   docker compose up wuya        # Start only the app
+#   docker compose logs -f         # View logs
+#   docker compose down            # Stop all services
+# =============================================================================
+
+services:
+  wuya:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: wuya-agents
+    restart: unless-stopped
+    ports:
+      - "${WUYA_SERVER_PORT:-8000}:8000"
+    volumes:
+      - ./data:/app/data          # Persist vector store data
+      - ./.env:/app/.env:ro       # Configuration file
+    environment:
+      - WUYA_ENVIRONMENT=${WUYA_ENVIRONMENT:-production}
+      - WUYA_LLM_PROVIDER=${WUYA_LLM_PROVIDER:-openai}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      - WUYA_RAG_VECTOR_STORE_TYPE=${WUYA_RAG_VECTOR_STORE_TYPE:-in_memory}
+    depends_on:
+      chromadb:
+        condition: service_healthy
+    networks:
+      - wuya-network
+
+  chromadb:
+    image: chromadb/chroma:latest
+    container_name: wuya-chromadb
+    restart: unless-stopped
+    ports:
+      - "8001:8000"
+    volumes:
+      - chromadb-data:/chroma/chroma
+    environment:
+      - IS_PERSISTENT=TRUE
+      - ANONYMIZED_TELEMETRY=FALSE
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/v1/heartbeat"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    networks:
+      - wuya-network
+
+volumes:
+  chromadb-data:
+    driver: local
+
+networks:
+  wuya-network:
+    driver: bridge

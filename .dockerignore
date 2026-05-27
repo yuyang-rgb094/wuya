@@ -36,21 +36,35 @@ htmlcov/
 .env.local
 .env.*.local
 
-# OS
-Thumbs.db
+# Documentation (not needed in image)
+paper/
+docs/
+*.md
+!README.md
+LICENSE
 
-# Distribution
-*.whl
-*.tar.gz
+# Reference PDFs
+产业应用评价/
+创新性评价/
+同行评议伦理/
+方法评价/
+证明评价/
 
-# Logs
+# Data
+data/
+*.xlsx
+*.xls
+
+# Git
+.git/
+.gitignore
+
+# Docker
+.dockerignore
+docker-compose*.yml
+Dockerfile*
+
+# Misc
 *.log
-
-# LaTeX
-*.tex
-*.aux
-*.bbl
-*.blg
-*.fdb_latexmk
-*.fls
-*.synctex.gz
+*.tmp
+*.bak

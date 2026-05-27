@@ -4,9 +4,15 @@
 numpy>=1.21.0
 scipy>=1.7.0
 
-# Optional: For LLM integration
+# LLM Client dependencies
+aiohttp>=3.8.0
+
+# Optional: For LLM integration (SDK-based, alternative to raw aiohttp)
 # openai>=1.0.0
 # anthropic>=0.8.0
+
+# Optional: For precise token counting (alternative to heuristic estimation)
+# tiktoken>=0.5.0
 
 # Optional: For web service
 # fastapi>=0.100.0
