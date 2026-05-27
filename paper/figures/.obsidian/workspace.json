@@ -1,0 +1,209 @@
+{
+  "main": {
+    "id": "0429d8c9a651fe12",
+    "type": "split",
+    "children": [
+      {
+        "id": "ac55836c570fb609",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "9c1d2d85fb450acd",
+            "type": "leaf",
+            "state": {
+              "type": "canvas",
+              "state": {
+                "file": "self-improvement-loop.canvas",
+                "viewState": {
+                  "x": 550,
+                  "y": 533.507090909091,
+                  "zoom": -0.5936797178222654
+                }
+              },
+              "icon": "lucide-layout-dashboard",
+              "title": "self-improvement-loop"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "c7ba45fa31fc3bbe",
+    "type": "split",
+    "children": [
+      {
+        "id": "2f556e18117d35bd",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "01d9337d835e4960",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "f98a37dba66a253a",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          },
+          {
+            "id": "de3805ef578cc42c",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          }
+        ],
+        "currentTab": 2
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "02ee769d5714b294",
+    "type": "split",
+    "children": [
+      {
+        "id": "6bcd4fe0dd70e326",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "ef5156c30fe33985",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "architecture.canvas",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "architecture 的反向链接列表"
+            }
+          },
+          {
+            "id": "2795b9e4a080da2e",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "architecture.canvas",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "architecture 的出链列表"
+            }
+          },
+          {
+            "id": "79108a62bb926e4f",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "01dffcd12ccd4524",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "添加笔记属性"
+            }
+          },
+          {
+            "id": "b6f1f270aceaf43a",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "architecture.canvas",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "architecture 的大纲"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "bases:新建数据库": false
+    }
+  },
+  "active": "9c1d2d85fb450acd",
+  "lastOpenFiles": [
+    "self-improvement-loop.png",
+    "hybrid-knowledge.png",
+    "architecture.png",
+    "hybrid-knowledge.canvas",
+    "architecture.canvas",
+    "self-improvement-loop.canvas",
+    "self-improvement-curve.canvas",
+    "architecture.pdf",
+    "generate_curve.py",
+    "self-improvement-loop.pdf",
+    "self-improvement-curve.png",
+    "未命名 1.md",
+    "未命名.md",
+    "canvas_to_png.py",
+    "self-improvement-curve.pdf",
+    "hybrid-knowledge.pdf"
+  ]
+}

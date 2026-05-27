@@ -1,0 +1,128 @@
+\section{Paper Localization Methods}
+\label{sec:localization}
+
+A core capability of WuYa is paper localization: determining where a paper ``fits'' in the landscape of academic journals. We propose a dual-path approach where Path A (LLM-as-Mapper) provides fast estimation and Path B (\dea{} Analysis) provides depth, with cross-validation ensuring robustness.
+
+\subsection{Problem Formulation}
+
+Given a paper with its five-dimensional score vector $\mathbf{s} = (s_1, s_2, s_3, s_4, s_5)$ and discipline $d$, we aim to estimate the paper's appropriate journal tier $t \in \{\text{Q1-A}, \text{Q1-B}, \text{Q2-A}, \ldots, \text{Q4-D}\}$, or recommend a ranked list of target journals.
+
+\subsection{Path A: LLM-as-Mapper with Discipline Priors}
+
+The LLM-as-Mapper approach leverages the cross-disciplinary reasoning capabilities of large language models, calibrated by discipline-specific prior distributions.
+
+\subsubsection{Discipline Prior Extraction}
+
+We extract prior distributions $P_0(t|d)$ from the SpringRank journal ranking system, which computes journal positions based on citation network structure. For each discipline $d$, we compute the empirical distribution of journal tiers:
+\begin{equation}
+P_0(t|d) = \frac{\# \text{journals in tier } t \text{ of discipline } d}{\# \text{total journals in discipline } d}
+\end{equation}
+
+For disciplines with fewer than 50 journals, we fall back to the parent category distribution.
+
+\subsubsection{LLM Mapping Prompt}
+
+The LLM receives a carefully designed prompt containing:
+
+\begin{enumerate}
+    \item \textbf{Scoring rubric}: The five-dimensional scoring criteria with level descriptions.
+    \item \textbf{Few-shot examples}: Representative (score vector, tier) pairs across disciplines.
+    \item \textbf{Discipline prior}: The distribution $P_0(t|d)$ formatted as a string.
+    \item \textbf{Output template}: Requiring reasoning chain, estimated tier, and confidence level.
+\end{enumerate}
+
+\begin{verbatim}
+You are a research quality evaluator. Given the following five-dimensional
+scores (1=low to 5=high):
+- Innovation: [novelty, knowledge_bridge, future_potential, destruction]
+- Method: [causal, internal_validity, external_validity, statistical]
+- Evidence: [falsifiability, evidence_strength, replicability, program]
+- Application: [trl, translation_path, feedback, market]
+
+Discipline: {discipline}
+Prior distribution: {P0_string}
+
+Estimate the appropriate journal tier (Q1-A to Q4-D) and explain your reasoning.
+\end{verbatim}
+
+\subsubsection{Calibration Strategy}
+
+To prevent LLM hallucination on unfamiliar disciplines, we apply post-hoc calibration:
+\begin{equation}
+P_{\text{final}}(t|\mathbf{s}, d) \propto \alpha \cdot P_{\text{LLM}}(t|\mathbf{s}, d) + (1-\alpha) \cdot P_0(t|d)
+\end{equation}
+where $\alpha \in [0.6, 0.8]$ gives primary weight to LLM reasoning while anchoring to factual prior distributions.
+
+To ensure output consistency, we set temperature $\tau = 0.1$, run three generations, and take the modal answer.
+
+\subsection{Path B: DEA Efficiency Analysis}
+
+For deeper analysis, especially when targeting a specific journal, we employ \dea{} efficiency analysis.
+
+\subsubsection{Input-Output Transformation}
+
+We transform the five-dimensional scores into \dea{} inputs (lower is better) and outputs (higher is better):
+
+\begin{itemize}
+    \item \textbf{Inputs} (minimize):
+    \begin{itemize}
+        \item Method flaws: $6 - s_{\text{method}}$
+        \item Evidence gap: $6 - s_{\text{evidence}}$
+    \end{itemize}
+    \item \textbf{Outputs} (maximize):
+    \begin{itemize}
+        \item Innovation: $s_{\text{innovation}}$
+        \item Application: $s_{\text{application}}$
+    \end{itemize}
+\end{itemize}
+
+This transformation reflects the assumption that strong methods and solid evidence are ``investments'' that should yield innovative and impactful ``returns.''
+
+\subsubsection{Frontier Construction}
+
+For a target journal $j$, we construct the reference frontier from previously published papers in $j$. We require at least 50 papers to build a reliable frontier. If insufficient data exists for $j$, we fall back to a discipline-level frontier constructed from journals in the same tier.
+
+We employ the super-efficiency \dea{} model, which allows efficiency scores greater than 1 for units on the frontier, enabling ranking of even the most efficient papers:
+\begin{align}
+\max \quad & \theta \\
+\text{s.t.} \quad & \sum_{i \in R} \lambda_i x_{ik} \leq \theta x_{k} \\
+& \sum_{i \in R} \lambda_i y_{ik} \geq y_{k} \\
+& \lambda_i \geq 0
+\end{align}
+where $R$ is the reference set, $x_k, y_k$ are the input/output of paper $k$, and $\theta > 1$ indicates super-efficiency.
+
+\subsubsection{Bootstrap Confidence Intervals}
+
+To quantify uncertainty, we apply bootstrap re-sampling \citep{efron1994introduction}:
+
+\begin{enumerate}
+    \item Resample the reference set with replacement, maintaining original size.
+    \item Recompute efficiency scores on the bootstrap frontier.
+    \item Repeat 200 times to construct empirical distribution.
+    \item Report the 2.5th and 97.5th percentiles as confidence intervals.
+\end{enumerate}
+
+A paper whose confidence interval includes 1.0 is considered statistically indistinguishable from the frontier.
+
+\subsection{Cross-Validation and Output}
+
+The outputs of Path A and Path B are compared:
+
+\begin{itemize}
+    \item \textbf{Consistent}: Both paths suggest similar tiers $\rightarrow$ High confidence output.
+    \item \textbf{Inconsistent}: Paths diverge significantly $\rightarrow$ Trigger RAG explanation of discrepancy (e.g., ``LLM's cross-disciplinary intuition vs. DEA's local analysis'').
+\end{itemize}
+
+For submission recommendation, WuYa outputs a ranked list of candidate journals with:
+\begin{itemize}
+    \item Match score based on tier proximity.
+    \item Per-journal explanation referencing evaluation dimensions.
+    \item RAG-retrieved canonical text justifying the recommendation.
+\end{itemize}
+
+For journal review, WuYa outputs:
+\begin{itemize}
+    \item Five-dimensional evaluation report.
+    \item Estimated tier vs. journal's actual tier.
+    \item Specific improvement suggestions grounded in theory.
+\end{itemize}

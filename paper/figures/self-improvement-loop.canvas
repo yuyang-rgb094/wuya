@@ -1,0 +1,26 @@
+{
+	"nodes":[
+		{"id":"reflection","type":"group","x":140,"y":20,"width":460,"height":340,"color":"4","label":"2. Reflection Generation"},
+		{"id":"library","type":"group","x":140,"y":700,"width":440,"height":340,"color":"6","label":"4. Library Update"},
+		{"id":"feedback","type":"group","x":140,"y":-280,"width":460,"height":240,"color":"3","label":"1. Feedback Collection"},
+		{"id":"generalization","type":"group","x":140,"y":420,"width":460,"height":220,"color":"5","label":"3. Pattern Generalization"},
+		{"id":"application","type":"group","x":140,"y":1100,"width":440,"height":220,"color":"2","label":"5. Application"},
+		{"id":"feedback_text","type":"text","text":"# Input Sources\n- Editor feedback text\n- Reviewer comments\n- Acceptance/rejection decision\n- Post-review correspondence","x":160,"y":-250,"width":400,"height":190},
+		{"id":"reflection_text","type":"text","text":"# Linguistic Reflection\n{\n  \"journal\": \"Nature ML\",\n  \"pattern\": {\n    \"dimension\": \"innovation\",\n    \"preference\": \"paradigm shifts\",\n    \"evidence\": [...],\n    \"confidence\": 0.82\n  }\n}","x":160,"y":40,"width":400,"height":300},
+		{"id":"generalization_text","type":"text","text":"# Clustering & Abstraction\n- Group similar patterns\n- Abstract higher-level principles\n- Validate against canonical texts","x":160,"y":460,"width":400,"height":160},
+		{"id":"reflexion_ref","type":"text","text":"# Inspired by\nReflexion\n(Shinn et al., 2023)","x":780,"y":130,"width":180,"height":130,"color":"1"},
+		{"id":"wuya_innov","type":"text","text":"# WuYa Innovation\n- Domain: Subjective evaluation\n- Knowledge: Frontier surfaces\n- Signal: Editor feedback","x":660,"y":-340,"width":300,"height":180,"color":"4"},
+		{"id":"library_text","type":"text","text":"# Frontier Surface Library\n{\n  \"journal_id\": \"Nature ML\",\n  \"frontier_surface\": {\n    \"description\": \"...\",\n    \"patterns\": [...],\n    \"updated_at\": \"2026-05-26\"\n  }\n}","x":160,"y":740,"width":400,"height":280},
+		{"id":"application_text","type":"text","text":"# Future Evaluations\n- Personalized recommendations\n- Weighted dimension scoring\n- Updated DEA frontiers","x":160,"y":1140,"width":400,"height":160},
+		{"id":"voyager_ref","type":"text","text":"# Inspired by\nVoyager\n(Wang et al., 2023)","x":780,"y":820,"width":180,"height":120,"color":"1"}
+	],
+	"edges":[
+		{"id":"edge001","fromNode":"feedback","fromSide":"right","toNode":"reflection","toSide":"right","fromEnd":"arrow","color":"4","label":"Feedback Data"},
+		{"id":"edge002","fromNode":"reflection","fromSide":"right","toNode":"generalization","toSide":"right","fromEnd":"arrow","color":"5","label":"Reflections"},
+		{"id":"edge003","fromNode":"generalization","fromSide":"right","toNode":"library","toSide":"right","fromEnd":"arrow","color":"6","label":"Generalized Patterns"},
+		{"id":"edge004","fromNode":"library","fromSide":"right","toNode":"application","toSide":"right","fromEnd":"arrow","color":"2","label":"Updated Library"},
+		{"id":"edge005","fromNode":"application","fromSide":"left","toNode":"feedback","toSide":"left","fromEnd":"arrow","color":"3","label":"New Feedback"},
+		{"id":"edge006","fromNode":"reflexion_ref","fromSide":"left","toNode":"reflection","toSide":"right","color":"#888888"},
+		{"id":"c9873137261fc0a5","fromNode":"voyager_ref","fromSide":"left","toNode":"library","toSide":"right"}
+	]
+}

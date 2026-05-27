@@ -1,0 +1,114 @@
+% References for WuYa paper
+
+\bibliography{references}
+
+% Appendix
+\section{Appendix}
+\label{sec:appendix}
+
+\subsection{A. Sub-agent Prompt Templates}
+
+This section provides detailed prompt templates for each \subagent{}.
+
+\subsubsection{Innovation Sub-agent System Prompt}
+
+\begin{verbatim}
+You are the Innovation Sub-agent for academic paper evaluation.
+
+Your task is to evaluate the innovation dimension of a research paper
+based on the following theoretical framework:
+
+THEORETICAL FOUNDATION:
+- Kuhn (1962): Paradigm shifts vs. normal science
+- Schumpeter: Innovation as new combinations
+- Mokyr (2002): Q-knowledge (knowing what) and A-knowledge (knowing how)
+- Aghion & Howitt: Creative destruction
+
+SUB-DIMENSIONS (score each 1-5):
+1. novelty_level: How novel is the contribution?
+   1 = fills a gap, 2 = incremental improvement,
+   3 = method transfer, 4 = theoretical breakthrough,
+   5 = paradigm shift
+
+2. knowledge_bridge: Does it bridge Q and A knowledge?
+   1 = pure theory, 5 = strong Q-A connection
+
+3. future_potential: Does it open new research directions?
+   1 = limited, 5 = highly generative
+
+4. creative_destruction: Does it replace/transform existing theory?
+   1 = minor refinement, 5 = fundamental replacement
+
+OUTPUT FORMAT:
+{
+  "scores": {
+    "novelty_level": <float>,
+    "knowledge_bridge": <float>,
+    "future_potential": <float>,
+    "creative_destruction": <float>
+  },
+  "overall_innovation_score": <float>,
+  "narrative": "<explanation>",
+  "rag_triggered": <boolean>,
+  "rag_citations": [<citation_objects>]
+}
+\end{verbatim}
+
+\subsection{B. Additional Experimental Details}
+
+\subsubsection{Dataset Statistics}
+
+Table~\ref{tab:dataset-stats} provides detailed statistics on the evaluation dataset.
+
+\begin{table}[h]
+\centering
+\caption{Dataset Statistics by Discipline}
+\label{tab:dataset-stats}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Discipline} & \textbf{Count} & \textbf{Avg Citations} & \textbf{Q1 Ratio} & \textbf{Expert Agreement} \\
+\midrule
+Computer Science & 1,500 & 42.3 & 0.65 & 0.81 \\
+Biology & 1,000 & 38.7 & 0.58 & 0.76 \\
+Economics & 1,000 & 31.2 & 0.52 & 0.74 \\
+Physics & 1,000 & 55.8 & 0.71 & 0.79 \\
+Medicine & 500 & 48.1 & 0.63 & 0.78 \\
+\midrule
+\textbf{Total} & \textbf{5,000} & \textbf{42.8} & \textbf{0.62} & \textbf{0.78} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Statistical Significance}
+
+All improvements reported in Section~\ref{sec:experiments} are statistically significant ($p < 0.01$) based on paired t-tests comparing WuYa against each baseline. The 95\% confidence intervals were computed via bootstrap resampling with 1,000 iterations.
+
+\subsection{C. RAG Corpus Statistics}
+
+The \rag{} corpus contains the following canonical texts:
+
+\begin{itemize}
+    \item Karl Popper: \textit{The Logic of Scientific Discovery} (1934) - 12 chapters, 156 passages
+    \item Thomas Kuhn: \textit{The Structure of Scientific Revolutions} (1962) - 12 chapters, 89 passages
+    \item Imre Lakatos: \textit{Falsification and the Methodology of Scientific Research Programmes} (1970) - 8 sections, 64 passages
+    \item Robert Merton: \textit{The Normative Structure of Science} (1942) - 6 sections, 42 passages
+    \item Judea Pearl: \textit{Causality} (2000) - 10 chapters, 128 passages
+    \item Donald Campbell: \textit{Experimental and Quasi-Experimental Designs} (1963) - 8 chapters, 76 passages
+    \item Vannevar Bush: \textit{Science: The Endless Frontier} (1945) - 5 sections, 35 passages
+    \item Joel Mokyr: \textit{The Gifts of Athena} (2002) - 10 chapters, 95 passages
+\end{itemize}
+
+Total: 8 works, 685 indexed passages, average length 280 tokens.
+
+\subsection{D. System Prompt Sizes}
+
+Each \subagent{}'s system prompt contains approximately:
+\begin{itemize}
+    \item Innovation Sub-agent: 2,100 tokens (prompt) + 0 (retrieved)
+    \item Method Sub-agent: 1,850 tokens + avg 320 tokens (RAG)
+    \item Evidence Sub-agent: 1,920 tokens + avg 450 tokens (RAG)
+    \item Application Sub-agent: 1,750 tokens + avg 280 tokens (RAG)
+    \item CUDOS Sub-agent: 1,400 tokens + avg 200 tokens (RAG)
+\end{itemize}
+
+Average total context per evaluation: ~12,000 tokens.

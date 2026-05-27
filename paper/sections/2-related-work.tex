@@ -1,0 +1,49 @@
+\section{Related Work}
+\label{sec:related}
+
+\subsection{AI-Assisted Academic Review}
+
+The application of AI to academic paper evaluation has a growing literature. \citet{kang2018peerread} introduced the PeerRead dataset and demonstrated that paper reviews contain structured information that can be leveraged for quality prediction. Subsequent work has explored citation network analysis \citep{bornmann2008scientific}, topic modeling for reviewer-paper matching \citep{stevinson2019finding}, and transformer-based review generation \citep{tran2023automatic}. More recently, large language models have been applied to generate structured feedback \citep{liu2024can}, though concerns about hallucination and lack of domain specificity remain.
+
+Existing tools, however, treat evaluation criteria as given and fixed. They do not explain \textit{why} certain criteria matter or trace these criteria to their theoretical foundations. WuYa addresses this gap by grounding every evaluation dimension in classical philosophical texts.
+
+\subsection{Multi-Agent Systems for LLM Applications}
+
+The emergence of LLM-based agents has spurred interest in multi-agent architectures where specialized models collaborate to solve complex tasks. ReAct \citep{yao2023react} introduced the idea of synergizing reasoning and acting through interleaved generation. AutoGen \citep{wu2023autogen} proposed a framework for multi-agent conversation, enabling role-based collaboration. AgentVerse \citep{chen2023agentverse} explored task-solving via dynamic agent team formation.
+
+These frameworks typically focus on task execution (e.g., code generation, question answering) rather than evaluation and judgment. WuYa's contribution is to design a multi-agent architecture specifically for the evaluation domain, where agents not only execute tasks but also assess quality against principled standards.
+
+\subsection{Retrieval-Augmented Generation}
+
+\RAG{} has become a standard technique for enhancing LLM outputs with external knowledge \citep{lewis2020rag}. Early work focused on knowledge-intensive NLP tasks \citep{guu2020realm}, while recent advances have explored self-reflective \rag{} \citep{asai2024selfrag} and iterative refinement \citep{ram2023iterative}.
+
+A key distinction in WuYa is that \rag{} serves as a \textit{triggering mechanism} rather than merely a supplementary knowledge source. When evaluation reveals deficiencies, the retrieval is directed to specific canonical passages that explain \textit{why} something is problematic and \textit{how} to improve. This couples evaluation with actionable guidance in a way that purely supplementary \rag{} does not achieve.
+
+\subsection{Self-Improving Agents}
+
+The concept of agents that improve through experience has gained significant traction. Reflexion \citep{shinn2023reflexion} introduced verbal reinforcement learning, where agents store linguistic reflections in episodic memory and use them to guide future decisions. Voyager \citep{wang2023voyager} proposed an open-ended agent that builds a skill library through embodied exploration, enabling lifelong learning.
+
+WuYa draws inspiration from both frameworks but applies self-improvement to a fundamentally different domain. Where Reflexion learns from task success/failure and Voyager discovers executable skills, WuYa learns \textit{evaluation preferences} from expert feedback. The knowledge form is not executable code but rather ``frontier surfaces''---structured representations of what each journal values in terms of evaluation dimensions.
+
+\begin{table}[t]
+\centering
+\caption{Comparison of WuYa with Existing Self-Improving Agent Frameworks}
+\label{tab:self-improving-comparison}
+\begin{tabular}{@{}llll@{}}
+\toprule
+\textbf{Dimension} & \textbf{Reflexion} & \textbf{Voyager} & \textbf{WuYa} \\
+\midrule
+Feedback Source & Task success/failure & Environment interaction & Editor/reviewer feedback \\
+Learning Target & Execution strategy & Executable skills & Evaluation preferences \\
+Knowledge Form & Linguistic reflections & Skill library (code) & Frontier surfaces \\
+Domain & Verifiable tasks (code, games) & Embodied tasks (Minecraft) & Subjective evaluation \\
+Retrieval Coupling & None & Skill retrieval & Canonical text retrieval \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:self-improving-comparison} summarizes the key differences. WuYa is the first to apply self-improving principles to academic evaluation, where the ``success signal'' is not binary but multidimensional and subjective, and where retrieval from canonical texts provides principled grounding for learned preferences.
+
+\subsection{Data Envelopment Analysis in Academic Evaluation}
+
+\dea{} has been applied to evaluate the efficiency of research institutions and journals \citep{charnes1978measuring}. Traditional \dea{} applications use citation counts and publication counts as inputs/outputs, but these metrics do not capture the qualitative dimensions of research quality. WuYa extends \dea{} by using the five-dimensional evaluation scores as inputs/outputs, enabling a more nuanced efficiency analysis that accounts for methodological rigor, evidence strength, and innovation level.

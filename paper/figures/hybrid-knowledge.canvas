@@ -1,0 +1,23 @@
+{
+	"nodes":[
+		{"id":"layer1group","type":"group","x":-320,"y":-260,"width":670,"height":660,"color":"5","label":"Layer 1: Prompt-Internalized Principles (\"Dao\")"},
+		{"id":"layer2group","type":"group","x":980,"y":-240,"width":490,"height":640,"color":"6","label":"Layer 2: RAG-Retrieved Evidence (\"Shu\")"},
+		{"id":"triggers","type":"group","x":550,"y":120,"width":250,"height":240,"color":"2","label":"Trigger Conditions"},
+		{"id":"dao001","type":"text","text":"# Internalized Knowledge\n- Evaluation dimensions\n- Theoretical origins\n- Scoring rubrics\n- Few-shot exemplars","x":-285,"y":-240,"width":605,"height":180},
+		{"id":"popper001","type":"text","text":"# Popper (1934)\n- Falsifiability\n- Demarcation criterion\n- \"Testable = Scientific\"","x":-285,"y":-50,"width":285,"height":160},
+		{"id":"kuhn001","type":"text","text":"# Kuhn (1962)\n- Paradigm shift\n- Normal science\n- Scientific revolutions","x":25,"y":-50,"width":295,"height":160},
+		{"id":"lakatos001","type":"text","text":"# Lakatos (1970)\n- Research programmes\n- Progressive vs degenerative","x":-285,"y":120,"width":285,"height":150},
+		{"id":"pearl001","type":"text","text":"# Pearl (2000)\n- Causal inference\n- Do-calculus","x":25,"y":120,"width":295,"height":150},
+		{"id":"menton001","type":"text","text":"# Merton (1942) - CUDOS\nCommunism | Universalism | Disinterestedness | Organized Skepticism","x":-285,"y":295,"width":620,"height":85},
+		{"id":"rag001","type":"text","text":"# RAG Retrieval\n- Dense (Embeddings)\n- Sparse (BM25)\n- Cross-encoder Rerank","x":1000,"y":-220,"width":450,"height":160},
+		{"id":"retrieval001","type":"text","text":"# Retrieved Canonical Passages\n\n**Popper:**\n\"The criterion of the scientific status of a theory is its falsifiability...\"\n\n**Kuhn:**\n\"...scientific revolutions are those epochs in which one paradigm is replaced by another...\"\n\n**Merton:**\n\"The substantive findings of science are to be reported...\"\n\n**Result: Actionable Guidance**","x":1000,"y":-45,"width":450,"height":425},
+		{"id":"trigger001","type":"text","text":"1. Deficiency Detection\n2. Justification Need\n3. Improvement Suggestion\n4. Boundary Case","x":570,"y":140,"width":210,"height":198},
+		{"id":"subagent001","type":"text","text":"# Sub-agent Evaluation Output\n{\n  \"scores\": { ... },\n  \"narrative\": \"The paper's hypothesis lacks falsifiability because...\",\n  \"rag_citations\": [\n    {\"source\": \"Popper (1934)\", \"passage\": \"...\"}\n\t\t\t\t]\n}","x":360,"y":520,"width":650,"height":240}
+	],
+	"edges":[
+		{"id":"edge001","fromNode":"layer1group","fromSide":"right","toNode":"triggers","toSide":"left","fromEnd":"arrow","label":"Initial Evaluation"},
+		{"id":"edge002","fromNode":"triggers","fromSide":"right","toNode":"layer2group","toSide":"left","fromEnd":"arrow","label":"Retrieval Request"},
+		{"id":"edge003","fromNode":"layer1group","fromSide":"bottom","toNode":"subagent001","toSide":"top","fromEnd":"arrow","color":"5"},
+		{"id":"edge004","fromNode":"layer2group","fromSide":"bottom","toNode":"subagent001","toSide":"top","fromEnd":"arrow","color":"6","label":"Retrieved Evidence"}
+	]
+}

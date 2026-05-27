@@ -1,0 +1,62 @@
+\documentclass[11pt,a4paper]{article}
+
+% Packages
+\usepackage{times}
+\usepackage{url}
+\usepackage{latexsym}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{algorithm}
+\usepackage[noend]{algorithmic}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{tocbibind}
+\geometry{margin=1in}
+
+% Custom commands
+\newcommand{\cudos}{CUDOS}
+\newcommand{\rag}{RAG}
+\newcommand{\dea}{DEA}
+\newcommand{\subagent}{sub-agent}
+\newcommand{\subagents}{sub-agents}
+
+% Title
+\title{Retrieval-Driven Self-Improvement: A Multi-Agent Architecture for Theory-Grounded Academic Review}
+
+% Authors
+\author{
+    Anonymous Authors\\
+    \normalsize Anonymous Institution\\
+    \normalsize \texttt{anonymous@email.com}
+}
+
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Peer review is the cornerstone of scientific progress, yet traditional peer review faces challenges of inefficiency, inconsistent standards, and subjective evaluation. While AI-assisted review tools have emerged, they predominantly operate at the ``technical'' level, lacking theoretical foundations from the philosophy of science. More critically, existing tools treat knowledge bases as static, failing to adapt to evolving disciplinary standards and reviewer feedback. In this paper, we present WuYa, a theory-driven multi-agent system that transforms classical philosophical principles into an operational architecture for academic paper evaluation. WuYa introduces five key innovations: (1) a retrieval-evaluation coupling mechanism where \rag{} serves as the core triggering mechanism for judgment; (2) a two-phase routing architecture with CUDOS gatekeeping and parallel expert evaluation; (3) a hybrid knowledge strategy combining prompt-internalized ``principles'' with \rag{}-retrieved ``evidence''; (4) an LLM-as-mapper approach with discipline prior calibration for paper localization; and (5) a self-improving frontier discovery mechanism that learns evaluation preferences from editor feedback. Experiments on 5,000 papers across five disciplines demonstrate that WuYa achieves 70.3\% top-5 recommendation accuracy and 0.72 Spearman correlation with human experts.
+\end{abstract}
+
+\input{sections/1-introduction}
+
+\input{sections/2-related-work}
+
+\input{sections/3-theoretical-foundations}
+
+\input{sections/4-system-architecture}
+
+\input{sections/5-paper-localization}
+
+\input{sections/6-frontier-discovery}
+
+\input{sections/7-implementation}
+
+\input{sections/8-experiments}
+
+\input{sections/9-discussion}
+
+\end{document}

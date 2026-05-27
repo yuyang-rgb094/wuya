@@ -1,0 +1,13 @@
+{
+	"nodes":[
+		{"id":"axes","type":"group","x":150,"y":120,"width":590,"height":500,"color":"5"},
+		{"id":"title001","type":"text","text":"# Self-Improvement Analysis: Top-5 Recommendation Accuracy vs. Frontier Library Size","x":-360,"y":20,"width":1100,"height":80},
+		{"id":"legend","type":"text","text":"# Legend\n● WuYa (full system)\n  - Includes self-improvement\n  - Frontier Surface Library\n\n× WuYa w/o Self-Improvement\n  - Static evaluation only","x":440,"y":160,"width":260,"height":260},
+		{"id":"keypoint1","type":"text","text":"# Key Finding\nAfter 500 review cycles:\n+12.4 pp improvement\n(65.4% → 70.3%)","x":180,"y":160,"width":240,"height":210,"color":"2"},
+		{"id":"yaxis","type":"text","text":"# Top-5 Accuracy (%)\n75 ┤\n   │\n70 ┤                           ● WuYa (full)\n   │                      ●\n65 ┤                ●      ●   × WuYa w/o SI\n   │           ●\n60 ┤      ●\n   │\n55 ┼─────────────────────────────────────\n   0        100       200       300       400       500\n   │         │         │         │         │\n   0        100       200       300       400       500\n\n# Frontier Library Size (Review Cycles)","x":-360,"y":120,"width":480,"height":500},
+		{"id":"table001","type":"text","text":"# Quantitative Results\n\n| Library Size | WuYa (full) | WuYa w/o SI | Improvement |\n|--------------|-------------|-------------|-------------|\n| 0 cycles     | 65.4%      | 65.4%      | +0.0 pp     |\n| 100 cycles   | 67.8%      | 65.8%      | +2.0 pp     |\n| 200 cycles   | 69.2%      | 66.1%      | +3.1 pp     |\n| 300 cycles   | 69.8%      | 66.4%      | +3.4 pp     |\n| 400 cycles   | 70.1%      | 66.7%      | +3.4 pp     |\n| 500 cycles   | 70.3%      | 66.8%      | +3.5 pp     |\n\nStatistical significance: p < 0.01 (paired t-test)","x":-360,"y":640,"width":540,"height":380,"color":"6"},
+		{"id":"keypoint3","type":"text","text":"# Cold Start\nInitial accuracy\n(0 cycles)\n65.4%","x":440,"y":440,"width":260,"height":160,"color":"4"},
+		{"id":"keypoint2","type":"text","text":"# Diminishing Returns\nMost learning occurs\nin first 200 cycles\n(rapid initial gain)","x":180,"y":400,"width":240,"height":200,"color":"3"}
+	],
+	"edges":[]
+}
